@@ -1,4 +1,4 @@
-var txt = "p4(q5r)10p3r"
+var txt = "(p3(q3r))"
 let actualLetterAscii = 66
 let letters = txt
 /*
@@ -189,11 +189,15 @@ function resolve(txt) {
     return txt
 }
 
+
 while(txt.includes("(")){
-    let aux1 = txt.substring(txt.indexOf("(")+1, txt.indexOf(")"))
+    let end = txt.indexOf(")")
+    let aux1 = txt.substring(0, end)
+    let ini = aux1.lastIndexOf("(")
+    aux1 = aux1.substring(ini+1)
     let aux2 = resolve(aux1)
-    txt = txt.substring(0,txt.indexOf("("))+aux2+txt.substring(txt.indexOf(")")+1)
-    break;
+
+    txt = txt.substring(0,ini) + aux2 + txt.substring(end+1)
 }
 
 txt = resolve(txt)
