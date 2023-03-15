@@ -1,12 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!--Meu CSS-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!--Lucas Gonçalves Silva-->
+    <title>SiHelp</title>
 </head>
+
 <body>
-    
+    <nav class="navbar bg-dark navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/LogoSi.svg" alt="Logo" height="24" class="d-inline-block align-text-top">
+                Início
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Lógica Computacional
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Valoração</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Conteúdo indisponivel</h1>
+    </main>
+
+
+
+    <div class="bg-dark p-1 fixed-bottom" >
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top text-light container ">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
+                    <img src="assets/img/LogoSi.svg" alt="Logo" height="24" class="d-inline-block align-text-top">
+                </a>
+                <span class="mb-3 mb-md-0 ">&copy; 2023</span>
+            </div>
+            <ul class="col-md-4 justify-content-end list-unstyled d-flex">
+                <li><a class ="link-light" href="https://wa.me/5519987036101"><svg class="bi" width="24" height="24"><i class="bi bi-whatsapp"></i></a></li>
+                <li><a class ="link-light" href="https://github.com/lgs8Lucas"><svg class="bi" width="24" height="24"><i class="bi bi-github"></i></a></li>
+            </ul>
+        </footer>
+    </div>
+
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
