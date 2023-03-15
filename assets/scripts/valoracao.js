@@ -1,4 +1,4 @@
-var txt = "(p10q)"
+var txt = "p4(q5r)10p3r"
 let actualLetterAscii = 66
 let letters = txt
 /*
@@ -34,7 +34,6 @@ let letters = txt
     }
 }
 
-const tam = letters.length
 const letras = [] 
 const simbols = {}
 
@@ -46,6 +45,12 @@ while (letters.length > 0) {
         letters = letters.replace(s, '')
     }
 }
+
+letters = letras.toString()
+while(letters.includes(",")){
+    letters = letters.replace(",","")
+}
+const tam = letters.length
 
 const r = Math.pow(2, Object.keys(simbols).length)
 
@@ -187,13 +192,13 @@ function resolve(txt) {
 while(txt.includes("(")){
     let aux1 = txt.substring(txt.indexOf("(")+1, txt.indexOf(")"))
     let aux2 = resolve(aux1)
-    txt = aux2+txt.substring(txt.indexOf(")")+1)
+    txt = txt.substring(0,txt.indexOf("("))+aux2+txt.substring(txt.indexOf(")")+1)
     break;
 }
 
 txt = resolve(txt)
 
 simbols.A = simbols[String.fromCharCode(actualLetterAscii-1)]
-delete simbols.C
 
+delete simbols[String.fromCharCode(actualLetterAscii-1)]
 console.log(simbols.A)
