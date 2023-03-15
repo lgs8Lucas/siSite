@@ -1,10 +1,21 @@
-var txt = "p3q3r"
+var txt = "(p10q)"
 let actualLetterAscii = 66
 let letters = txt
-
+/*
+* 0 - Não
+* 1 - E
+* 2 - Ou exclusivo
+* 3 - Ou
+* 4 - Se
+* 5 - Se e somente se
+*/
 {
     while (letters.includes('1')) {
         letters = letters.replace('1', '')
+    }
+    while (letters.includes('(')) {
+        letters = letters.replace('(', '')
+        letters = letters.replace(')', '')
     }
     while (letters.includes('0')) {
         letters = letters.replace('0', '')
@@ -58,7 +69,7 @@ letras.forEach((l, i) => {
     simbols[l] = genArr(r, tam - (i))
 })
 
-function resolve(f, o) {
+function resolveOperations(f, o, txt) {
     let a = []
     switch (o) {
         case 0:
@@ -134,42 +145,55 @@ function resolve(f, o) {
     simbols[String.fromCharCode(actualLetterAscii)] = a
     txt = txt.replace(f, String.fromCharCode(actualLetterAscii))
     actualLetterAscii++;
+    return txt
 }
 
-while(txt.length != 1){
-    if (txt.includes("0")) {
-        let i = txt.indexOf("0")
-        let f = txt[i]+ txt[i+1]
-        resolve(f,0)
+function resolve(txt) {
+    while(txt.length != 1){
+        if (txt.includes("0")) {
+            let i = txt.indexOf("0")
+            let f = txt[i]+ txt[i+1]
+            txt = resolveOperations(f,0, txt)
+        }
+        else if (txt.includes("1")) {
+            let i = txt.indexOf("1")
+            let f = txt[i-1]+txt[i]+txt[i+1]
+            txt = resolveOperations(f,1, txt)
+        }
+        else if (txt.includes("2")) {
+            let i = txt.indexOf("2")
+            let f = txt[i-1]+txt[i]+txt[i+1]
+            txt = resolveOperations(f,2, txt)
+        }
+        else if (txt.includes("3")) {
+            let i = txt.indexOf("3")
+            let f = txt[i-1]+txt[i]+txt[i+1]
+            txt = resolveOperations(f,3, txt)
+        }
+        else if (txt.includes("4")) {
+            let i = txt.indexOf("4")
+            let f = txt[i-1]+txt[i]+txt[i+1]
+            txt = resolveOperations(f,4, txt)
+        }
+        else if (txt.includes("5")) {
+            let i = txt.indexOf("5")
+            let f = txt[i-1]+txt[i]+txt[i+1]
+            txt = resolveOperations(f,5, txt)
+        }
     }
-    else if (txt.includes("1")) {
-        let i = txt.indexOf("1")
-        let f = txt[i-1]+txt[i]+txt[i+1]
-        resolve(f,1)
-    }
-    else if (txt.includes("2")) {
-        let i = txt.indexOf("2")
-        let f = txt[i-1]+txt[i]+txt[i+1]
-        resolve(f,2)
-    }
-    else if (txt.includes("3")) {
-        let i = txt.indexOf("3")
-        let f = txt[i-1]+txt[i]+txt[i+1]
-        resolve(f,3)
-    }
-    else if (txt.includes("4")) {
-        let i = txt.indexOf("4")
-        let f = txt[i-1]+txt[i]+txt[i+1]
-        resolve(f,4)
-    }
-    else if (txt.includes("5")) {
-        let i = txt.indexOf("5")
-        let f = txt[i-1]+txt[i]+txt[i+1]
-        resolve(f,5)
-    }
+    return txt
 }
+
+while(txt.includes("(")){
+    let aux1 = txt.substring(txt.indexOf("(")+1, txt.indexOf(")"))
+    let aux2 = resolve(aux1)
+    txt = aux2+txt.substring(txt.indexOf(")")+1)
+    break;
+}
+
+txt = resolve(txt)
 
 simbols.A = simbols[String.fromCharCode(actualLetterAscii-1)]
 delete simbols.C
-console.log(simbols)
+
 console.log(simbols.A)
