@@ -1,6 +1,8 @@
 let f = "";
 let txt = "";
 
+const content = document.getElementById("content")
+
 const inpf = document.getElementById("formula")
 
 const btn_b = document.getElementById("back")
@@ -71,8 +73,43 @@ function clear() {
 }
 
 function generate() {
-    s = geraTabelaVErdade(txt)
+    content.innerHTML=""
+    const s = geraTabelaVErdade(txt)
+    const keys = Object.keys(s)
+    const tbl = document.createElement("table")
+
+    tbl.classList.add("table")
+    tbl.classList.add("text-center")
+    tbl.classList.add("table-striped")
+    tbl.classList.add("table-hover")
+
+    const head = document.createElement("thead")
+    head.classList.add("table-dark")
+    head.classList.add("rounded-top")
+    const trh = document.createElement("tr")
+    const tbody = document.createElement("tbody")
     console.log(s)
+    keys.forEach((k)=>{
+        const th = document.createElement("th")
+        const title = document.createTextNode(k)
+        th.appendChild(title)
+        trh.appendChild(th)
+    })
+    for (let i = 0; i < s[keys[0]].length; i++) {
+       const tr = document.createElement("tr")
+       keys.forEach((k)=>{
+        const td = document.createElement("td")
+        const text = document.createTextNode(s[k][i]?"V":"F")
+        td.appendChild(text)
+        tr.appendChild(td)
+       })
+       tbody.appendChild(tr)        
+    }
+
+    head.appendChild(trh)
+    tbl.appendChild(head)
+    tbl.appendChild(tbody)
+    content.appendChild(tbl)
 }
 
 function defineButtons(){
@@ -96,6 +133,7 @@ function defineButtons(){
 }
 
 defineButtons()
+
 
 
 
