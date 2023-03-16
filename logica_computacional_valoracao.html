@@ -37,7 +37,7 @@
                             Lógica Computacional
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="logica_computacional_valoracao.html">Valoração</a></li>
+                            <li><a class="dropdown-item" href="logica_computacional_valoracao.html">Tabela - Verdade</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -47,7 +47,7 @@
 
     <main class="container" style="max-width: 600px">
         <div class="bg-dark text-center mt-2 rounded-top text-light pt-2 p-1">
-            <h2>Valoração</h2>
+            <h2>Gerador de Tabela Verdade</h2>
         </div>
         <div class="container mt-2" style="max-width: 500px;">
             <label class="form" for="formula">Fórmula</label>
@@ -62,7 +62,7 @@
                         <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addSP">)</button>
                     </div>
                     <div class="flex-fill">
-                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addN">!</button>
+                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addN">¬</button>
                     </div>
                     <div class="flex-fill">
                         <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addE">^</button>
@@ -89,6 +89,23 @@
                         <button style="width: 100px; height: 50px;" class="btn btn-secondary" id="back">Backspace</button>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center mt-2">
+                    <div class="flex-fill">
+                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addp">p</button>
+                    </div>
+                    <div class="flex-fill">
+                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addq">q</button>
+                    </div>
+                    <div class="flex-fill">
+                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="addr">r</button>
+                    </div>
+                    <div class="flex-fill">
+                        <button style="width: 50px; height: 50px;" class="btn btn-secondary" id="adds">s</button>
+                    </div>
+                    <div class="flex-fill">
+                        <button style="width: 100px; height: 50px;" class="btn btn-primary" id="generate">Gerar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -110,6 +127,8 @@
         </footer>
     </div>
 
+    <script src="assets/scripts/logicac_tabelasvdd.js"></script>
+    
     <!--Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
