@@ -54,6 +54,37 @@ function transformF() {
     }
 }
 
+function transform(txt) {
+    let f = "";
+    for (let i = 0; i < txt.length; i++) {
+        l = txt[i]
+        switch (l) {
+            case "0":
+                f+="¬"
+                break;
+            case "1":
+                f+="^"
+                break;
+            case "2":
+                f+="_"
+                break;
+            case "3":
+                f+="V"
+                break;
+            case "4":
+                f+=">"
+                break;
+            case "5":
+                f+="<>"
+                break;
+            default:
+                f+=l
+                break;
+        }
+    }
+    return f
+}
+
 function addToF(l) {
     txt+=l
     transformF()
@@ -74,7 +105,9 @@ function clear() {
 
 function generate() {
     content.innerHTML=""
-    const s = geraTabelaVErdade(txt)
+    const sandf = geraTabelaVErdade(txt)
+    const s = sandf[0]
+    const func = sandf[1]
     const keys = Object.keys(s)
     const tbl = document.createElement("table")
 
@@ -91,7 +124,8 @@ function generate() {
     console.log(s)
     keys.forEach((k)=>{
         const th = document.createElement("th")
-        const title = document.createTextNode(k)
+        const txt =  (func[k]==undefined)?"":(" ("+transform(func[k])+")")
+        const title = document.createTextNode(k + txt)
         th.appendChild(title)
         trh.appendChild(th)
     })
@@ -142,7 +176,7 @@ defineButtons()
 
 
 function geraTabelaVErdade(txt) {
-    
+    const formules = {}
     //Lucas Gonçalves Silva
     let actualLetterAscii = 66
     let letters = txt
@@ -291,6 +325,7 @@ function geraTabelaVErdade(txt) {
                 break;
         }
         simbols[String.fromCharCode(actualLetterAscii)] = a
+        formules[String.fromCharCode(actualLetterAscii)] = f
         txt = txt.replace(f, String.fromCharCode(actualLetterAscii))
         actualLetterAscii++;
         return txt
@@ -344,9 +379,10 @@ function geraTabelaVErdade(txt) {
     }
 
     txt = resolve(txt)
-
+    formules.A = formules[String.fromCharCode(actualLetterAscii - 1)]
     simbols.A = simbols[String.fromCharCode(actualLetterAscii - 1)]
 
+    delete formules[String.fromCharCode(actualLetterAscii - 1)]
     delete simbols[String.fromCharCode(actualLetterAscii - 1)]
-    return simbols
+    return [simbols, formules]
 }
