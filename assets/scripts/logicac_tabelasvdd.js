@@ -23,6 +23,17 @@ const btn_q = document.getElementById("addq")
 const btn_r = document.getElementById("addr")
 const btn_s = document.getElementById("adds")
 
+
+function btnGen() {
+    if (validateForm(txt)) {
+        generate()
+    }
+    else{
+        alert("Formula inválida ou ambigua")
+        
+    }
+}
+
 function transformF() {
     f = "";
     for (let i = 0; i < txt.length; i++) {
@@ -121,7 +132,6 @@ function generate() {
     head.classList.add("rounded-top")
     const trh = document.createElement("tr")
     const tbody = document.createElement("tbody")
-    console.log(s)
     keys.forEach((k)=>{
         const th = document.createElement("th")
         const txt =  (func[k]==undefined)?"":(" ("+transform(func[k])+")")
@@ -149,7 +159,7 @@ function generate() {
 function defineButtons(){
     btn_c.onclick = ()=>{clear()}
     btn_b.onclick = ()=>{backspace()}
-    btn_g.onclick = ()=>{generate()}
+    btn_g.onclick = ()=>{btnGen()}
     
     btn_p.onclick = ()=>addToF("p")
     btn_q.onclick = ()=>addToF("q")
@@ -167,13 +177,6 @@ function defineButtons(){
 }
 
 defineButtons()
-
-
-
-
-
-
-
 
 function geraTabelaVErdade(txt) {
     const formules = {}
@@ -385,4 +388,55 @@ function geraTabelaVErdade(txt) {
     delete formules[String.fromCharCode(actualLetterAscii - 1)]
     delete simbols[String.fromCharCode(actualLetterAscii - 1)]
     return [simbols, formules]
+}
+
+function validateForm(f) {
+    let contP = 0
+    for (let i = 0; i < f.length; i++) {
+        const l = f[i];
+        //Verificando Parenteses
+        if (l == ")") {
+            contP--
+        }
+        else if(l == "("){
+            contP++
+        }
+        if (i>0) {
+            //Verificando Se tem letras repetidas
+            if (l != ")" && f[i-1] != "(") {
+                if (isNaN(l) && isNaN(f[i-1])) {
+                    return false
+                }
+                //Verificando Se tem formulas repetidas (sem ser o 0)
+                if (!isNaN(l) && !isNaN(f[i-1]) && l != "0") {
+                    return false
+                }
+            }
+        }
+        //verificando se tem l0l
+        if (i>1) {
+            if (isNaN(l) && isNaN(f[i-2]) && f[i-1] == "0") {
+                return false
+            }
+        }
+    }
+    if (contP != 0) {
+        return false
+    }
+
+    if (!isNaN(f[f.length-1])&& f[f.length-1] != ")") {
+        return false
+    }
+
+
+
+
+
+
+
+
+
+
+
+    return true
 }
