@@ -25,7 +25,8 @@ const btn_s = document.getElementById("adds")
 
 
 function btnGen() {
-    if (validateForm(txt)) {
+    //if (validateForm(txt)) {
+    if (true){
         generate()
     }
     else{
